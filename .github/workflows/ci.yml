@@ -44,7 +44,10 @@ jobs:
         run: python -m pip install -r scripts/requirements-dev.txt
       - name: Test
         working-directory: scripts
-        run: pytest -q
+        # Running pytest as a Python module adds this working directory to
+        # Python's import path, so the neighboring learning scripts can be
+        # imported consistently on a laptop and in GitHub Actions.
+        run: python -m pytest -q
 
   container:
     runs-on: ubuntu-24.04
