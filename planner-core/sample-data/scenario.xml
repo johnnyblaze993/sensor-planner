@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scenario>
+  <sensor latitude="34.725" longitude="-86.650" altitudeMeters="180"/>
+  <targets>
+    <target id="target-1" latitude="34.800" longitude="-86.500" altitudeMeters="220"/>
+    <target id="target-2" latitude="35.000" longitude="-86.700" altitudeMeters="150"/>
+  </targets>
+</scenario>

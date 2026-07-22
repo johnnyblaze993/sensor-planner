@@ -1,0 +1,60 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  cpp:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configure
+        run: cmake -S planner-core -B planner-core/build -DCMAKE_BUILD_TYPE=Debug
+      - name: Build
+        run: cmake --build planner-core/build --parallel
+      - name: Test
+        run: ctest --test-dir planner-core/build --output-on-failure
+
+  java:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+          cache: maven
+      - name: Test and package
+        run: mvn --batch-mode --file planner-service/pom.xml verify
+
+  python:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: scripts/requirements-dev.txt
+      - name: Install dependencies
+        run: python -m pip install -r scripts/requirements-dev.txt
+      - name: Test
+        working-directory: scripts
+        run: pytest -q
+
+  container:
+    runs-on: ubuntu-24.04
+    needs: [cpp, java, python]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/setup-buildx-action@v3
+      - name: Build final image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: false
+          tags: sensor-planner:ci

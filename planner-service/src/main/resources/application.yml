@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: sensor-planner-service
+server:
+  port: ${SERVER_PORT:8080}
+planner:
+  cpp:
+    executable-path: ${PLANNER_CPP_EXECUTABLE:../planner-core/build/planner-core}
+    timeout: ${PLANNER_CPP_TIMEOUT:5s}
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info

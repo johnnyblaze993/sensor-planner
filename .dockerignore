@@ -1,0 +1,11 @@
+.git
+.github
+.idea
+.vscode
+**/build
+**/target
+**/__pycache__
+**/.pytest_cache
+scripts/.venv
+scripts/sample-data/generated
+scripts/sample-data/results

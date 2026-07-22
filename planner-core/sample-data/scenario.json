@@ -1,0 +1,21 @@
+{
+  "sensor": {
+    "latitude": 34.725,
+    "longitude": -86.65,
+    "altitudeMeters": 180
+  },
+  "targets": [
+    {
+      "id": "target-1",
+      "latitude": 34.8,
+      "longitude": -86.5,
+      "altitudeMeters": 220
+    },
+    {
+      "id": "target-2",
+      "latitude": 35.0,
+      "longitude": -86.7,
+      "altitudeMeters": 150
+    }
+  ]
+}

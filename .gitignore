@@ -1,0 +1,18 @@
+# Generated C++ and Java output
+planner-core/build/
+planner-service/target/
+
+# Python environments, caches, and generated runs
+.venv/
+venv/
+__pycache__/
+.pytest_cache/
+*.py[cod]
+scripts/sample-data/generated/
+scripts/sample-data/results/
+
+# Editors and operating systems
+.idea/
+.vscode/
+*.swp
+.DS_Store
